@@ -92,16 +92,17 @@ public class MainActivity extends BaseActivity {
 
     @Click(R.id.btn_printer_setting_test)
     void testPrinter() {
-        try {
-            ArrayList<byte[]> bytes = new ArrayList<byte[]>();
-            String message = "蓝牙打印测试\n蓝牙打印测试\n蓝牙打印测试\n\n";
-            bytes.add(message.getBytes("gbk"));
-            bytes.add(GPrinterCommand.print);
-            bytes.add(GPrinterCommand.print);
-            bytes.add(GPrinterCommand.print);
-            PrintQueue.getQueue(getApplicationContext()).add(bytes);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            ArrayList<byte[]> bytes = new ArrayList<byte[]>();
+//            String message = "蓝牙打印测试\n蓝牙打印测试\n蓝牙打印测试\n\n";
+//            bytes.add(message.getBytes("gbk"));
+//            bytes.add(GPrinterCommand.print);
+//            bytes.add(GPrinterCommand.print);
+//            bytes.add(GPrinterCommand.print);
+//            PrintQueue.getQueue(getApplicationContext()).add(bytes);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+        startService(new Intent(getApplicationContext(),BtService.class));
     }
 }

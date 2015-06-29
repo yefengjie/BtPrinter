@@ -39,6 +39,8 @@
 
         <activity android:name=".BondBtActivity_" />
 
+        <service android:name=".BtService"/>
+
         <receiver android:name=".bt.MyBluetoothReceiver">
             <intent-filter>
                 <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
