@@ -11,18 +11,16 @@ import android.widget.TextView;
 import com.yefeng.night.btprinter.base.BaseActivity;
 import com.yefeng.night.btprinter.bt.BtMsgEvent;
 import com.yefeng.night.btprinter.bt.BtMsgType;
-import com.yefeng.night.btprinter.print.GPrinterCommand;
-import com.yefeng.night.btprinter.print.PrintQueue;
 import com.yefeng.night.btprinter.print.PrintUtil;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-
+/**
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
+ */
 @EActivity(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
 
@@ -44,7 +42,13 @@ public class MainActivity extends BaseActivity {
      */
     private BluetoothAdapter mAdapter;
 
-    @AfterViews
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        init();
+    }
+
     void init() {
         if (null == mAdapter) {
             mAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -77,7 +81,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void onEventMainThread(BtMsgEvent event) {
-        if (event.type == BtMsgType.BLUETOOTH_CHANGE) {
+        if (event.type == BtMsgType.BLUETOOTH_STATUS_CHANGE) {
             init();
         }
     }
@@ -92,17 +96,6 @@ public class MainActivity extends BaseActivity {
 
     @Click(R.id.btn_printer_setting_test)
     void testPrinter() {
-//        try {
-//            ArrayList<byte[]> bytes = new ArrayList<byte[]>();
-//            String message = "蓝牙打印测试\n蓝牙打印测试\n蓝牙打印测试\n\n";
-//            bytes.add(message.getBytes("gbk"));
-//            bytes.add(GPrinterCommand.print);
-//            bytes.add(GPrinterCommand.print);
-//            bytes.add(GPrinterCommand.print);
-//            PrintQueue.getQueue(getApplicationContext()).add(bytes);
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-        startService(new Intent(getApplicationContext(),BtService.class));
+        startService(new Intent(getApplicationContext(), BtService.class));
     }
 }

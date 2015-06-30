@@ -1,9 +1,10 @@
 package com.yefeng.night.btprinter.print;
 
 /**
- * Created by yee on 5/20/14.
- *
- * @author yee
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
+ * <p>
+ * printer command
  */
 public class GPrinterCommand {
 

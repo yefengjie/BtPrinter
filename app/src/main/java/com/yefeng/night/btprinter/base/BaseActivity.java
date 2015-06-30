@@ -1,8 +1,6 @@
 package com.yefeng.night.btprinter.base;
 
 import android.app.Activity;
-import android.os.Bundle;
-
 
 import com.yefeng.night.btprinter.util.ToastUtil;
 
@@ -10,18 +8,19 @@ import de.greenrobot.event.EventBus;
 
 
 /**
- * Created by night on 5/27/15.
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
  */
 public class BaseActivity extends Activity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onStart() {
+        super.onStart();
         EventBus.getDefault().register(this);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
     }
 

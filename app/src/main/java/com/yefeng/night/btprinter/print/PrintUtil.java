@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.text.TextUtils;
 
 import com.yefeng.night.btprinter.base.AppInfo;
@@ -12,9 +13,10 @@ import com.yefeng.night.btprinter.bt.BtUtil;
 import java.util.Set;
 
 /**
- * Created by yee on 5/16/14.
- *
- * @author yee
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
+ * <p>
+ * printer util
  */
 public class PrintUtil {
 
@@ -25,7 +27,8 @@ public class PrintUtil {
     public static void setDefaultBluetoothDeviceAddress(Context mContext, String value) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(DEFAULT_BLUETOOTH_DEVICE_ADDRESS, value).commit();
+        editor.putString(DEFAULT_BLUETOOTH_DEVICE_ADDRESS, value);
+        editor.apply();
         AppInfo.btAddress = value;
     }
 
@@ -37,7 +40,8 @@ public class PrintUtil {
     public static void setDefaultBluetoothDeviceName(Context mContext, String value) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(DEFAULT_BLUETOOTH_DEVICE_NAME, value).commit();
+        editor.putString(DEFAULT_BLUETOOTH_DEVICE_NAME, value);
+        editor.apply();
         AppInfo.btName = value;
     }
 
@@ -74,5 +78,18 @@ public class PrintUtil {
             return false;
         }
         return true;
+    }
+
+    /**
+     * use new api to reduce file operate
+     *
+     * @param editor editor
+     */
+    public static void apply(SharedPreferences.Editor editor) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            editor.apply();
+        } else {
+            editor.commit();
+        }
     }
 }

@@ -10,6 +10,12 @@ import com.yefeng.night.btprinter.print.PrintQueue;
 
 import de.greenrobot.event.EventBus;
 
+/**
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
+ * <p>
+ * bluetooth receiver
+ */
 public class MyBluetoothReceiver extends BroadcastReceiver {
     public MyBluetoothReceiver() {
     }
@@ -23,17 +29,15 @@ public class MyBluetoothReceiver extends BroadcastReceiver {
         if (TextUtils.isEmpty(action)) {
             return;
         }
-        EventBus.getDefault().post(new BtMsgEvent(BtMsgType.BLUETOOTH_CHANGE, intent));
         try {
             if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
+                EventBus.getDefault().post(new BtMsgEvent(BtMsgType.BLUETOOTH_STATUS_CHANGE, intent));
                 int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1);
                 if (state == BluetoothAdapter.STATE_ON) {
                     PrintQueue.getQueue(context).tryConnect();
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } catch (Error e) {
+        } catch (Exception | Error e) {
             e.printStackTrace();
         }
     }

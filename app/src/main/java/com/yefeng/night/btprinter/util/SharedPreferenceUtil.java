@@ -6,11 +6,9 @@ import android.os.Build;
 import android.text.TextUtils;
 
 /**
- * Created by yee on 8/5/14.
- *
- * @author yee
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
  */
-@SuppressWarnings("unused")
 public class SharedPreferenceUtil {
 
     private static final String FILE_NAME = "sp";

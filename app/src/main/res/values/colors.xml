@@ -2,7 +2,6 @@
 <resources>
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    <!--<color name="black_2">#434343</color>-->
     <color name="black_2">#DF000000</color>
     <color name="transparent_black_light">#44000000</color>
     <color name="transparent_black_normal">#66000000</color>

@@ -16,9 +16,8 @@ import java.util.ArrayList;
 
 
 /**
- * Created by yee on 5/16/14.
- *
- * @author yee
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
  */
 public class BtDeviceAdapter extends BaseAdapter {
 

@@ -6,8 +6,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -210,7 +208,7 @@ public class BondBtActivity extends BaseActivity {
     }
 
     public void onEventMainThread(BtMsgEvent event) {
-        if (event == null || event.type != BtMsgType.BLUETOOTH_CHANGE) {
+        if (event == null || event.type != BtMsgType.BLUETOOTH_STATUS_CHANGE) {
             return;
         }
         Intent intent = event.intent;

@@ -3,7 +3,9 @@ package com.yefeng.night.btprinter.bt;
 /**
  * Created by yefeng on 6/1/15.
  * github:yefengfreedom
+ * <p>
+ * blue tooth message type
  */
 public class BtMsgType {
-    public static final int BLUETOOTH_CHANGE=1;
+    public static final int BLUETOOTH_STATUS_CHANGE = 1;
 }

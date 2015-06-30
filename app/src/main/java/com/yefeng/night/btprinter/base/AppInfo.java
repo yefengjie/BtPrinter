@@ -11,9 +11,8 @@ import com.yefeng.night.btprinter.print.PrintUtil;
 
 
 /**
- * Created by yee on 11/18/13.
- *
- * @author yefeng
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
  */
 public class AppInfo {
 

@@ -13,6 +13,9 @@ import java.util.ArrayList;
 /**
  * Created by yefeng on 5/28/15.
  * github:yefengfreedom
+ * <p>
+ * this is print queue.
+ * you can simple add print bytes to queue. and this class will send those bytes to bluetooth device
  */
 public class PrintQueue {
 

@@ -12,10 +12,12 @@ import java.util.ArrayList;
 /**
  * Created by yefeng on 6/2/15.
  * github:yefengfreedom
+ * <p>
+ * print ticket service
  */
 public class BtService extends IntentService {
 
-    public BtService(){
+    public BtService() {
         super("BtService");
     }
 

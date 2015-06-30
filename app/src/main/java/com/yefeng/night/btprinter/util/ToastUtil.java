@@ -5,9 +5,8 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 /**
- * Created by yee on 11/21/13.
- *
- * @author yee
+ * Created by yefeng on 6/2/15.
+ * github:yefengfreedom
  */
 public class ToastUtil {
 
