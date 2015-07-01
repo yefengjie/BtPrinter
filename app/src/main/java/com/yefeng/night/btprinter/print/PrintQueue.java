@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by yefeng on 5/28/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * this is print queue.
  * you can simple add print bytes to queue. and this class will send those bytes to bluetooth device
  */
@@ -23,6 +23,10 @@ public class PrintQueue {
      * instance
      */
     private static PrintQueue mInstance;
+    /**
+     * context
+     */
+    private static Context mContext;
     /**
      * print queue
      */
@@ -35,10 +39,6 @@ public class PrintQueue {
      * bluetooth service
      */
     private BtService mBtService;
-    /**
-     * context
-     */
-    private static Context mContext;
 
 
     private PrintQueue() {
@@ -70,22 +70,6 @@ public class PrintQueue {
     }
 
     /**
-     * add print bytes to queue. and call print
-     *
-     * @param bytesList bytesList
-     */
-    public synchronized void add(ArrayList<byte[]> bytesList) {
-        if (null == mQueue) {
-            mQueue = new ArrayList<byte[]>();
-        }
-        if (null != bytesList) {
-            mQueue.addAll(bytesList);
-        }
-        print();
-    }
-
-
-    /**
      * print queue
      */
     public synchronized void print() {
@@ -114,6 +98,21 @@ public class PrintQueue {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * add print bytes to queue. and call print
+     *
+     * @param bytesList bytesList
+     */
+    public synchronized void add(ArrayList<byte[]> bytesList) {
+        if (null == mQueue) {
+            mQueue = new ArrayList<byte[]>();
+        }
+        if (null != bytesList) {
+            mQueue.addAll(bytesList);
+        }
+        print();
     }
 
     /**
@@ -176,7 +175,6 @@ public class PrintQueue {
             if (null == bytes || bytes.length <= 0) {
                 return;
             }
-//            Log.d("MtPrinter", "send to printer:" + MtBytesUtil.bytesToHex(bytes));
             if (null == mAdapter) {
                 mAdapter = BluetoothAdapter.getDefaultAdapter();
             }

@@ -8,9 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.yefeng.night.btprinter.base.BaseActivity;
-import com.yefeng.night.btprinter.bt.BtMsgEvent;
-import com.yefeng.night.btprinter.bt.BtMsgType;
+import com.yefeng.night.btprinter.bt.BluetoothActivity;
 import com.yefeng.night.btprinter.print.PrintUtil;
 
 import org.androidannotations.annotations.Click;
@@ -22,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
  * github:yefengfreedom
  */
 @EActivity(R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BluetoothActivity {
 
     @ViewById(R.id.img_printer_setting_icon)
     ImageView imgPrinter;
@@ -80,10 +78,10 @@ public class MainActivity extends BaseActivity {
         imgPrinter.setImageResource(R.drawable.ic_bluetooth_device_connected);
     }
 
-    public void onEventMainThread(BtMsgEvent event) {
-        if (event.type == BtMsgType.BLUETOOTH_STATUS_CHANGE) {
-            init();
-        }
+    @Override
+    public void btStatusChanged(Intent intent) {
+        super.btStatusChanged(intent);
+        init();
     }
 
     @Click(R.id.ll_printer_setting_change_device)

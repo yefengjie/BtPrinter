@@ -2,6 +2,7 @@ package com.yefeng.night.btprinter.base;
 
 import android.app.Activity;
 
+import com.yefeng.night.btprinter.util.NoEvent;
 import com.yefeng.night.btprinter.util.ToastUtil;
 
 import de.greenrobot.event.EventBus;
@@ -24,8 +25,7 @@ public class BaseActivity extends Activity {
         EventBus.getDefault().unregister(this);
     }
 
-    public void onEventMainThread(String msg) {
-        showToast(msg);
+    public void onEventMainThread(NoEvent msg) {
     }
 
     public void showToast(String message) {

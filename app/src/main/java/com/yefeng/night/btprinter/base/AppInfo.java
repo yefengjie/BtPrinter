@@ -3,7 +3,6 @@ package com.yefeng.night.btprinter.base;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
-import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
 import com.yefeng.night.btprinter.R;
@@ -16,7 +15,6 @@ import com.yefeng.night.btprinter.print.PrintUtil;
  */
 public class AppInfo {
 
-    public static String dId;
     public static String dType;
     public static String dVersion;
 
@@ -33,8 +31,6 @@ public class AppInfo {
     public static String btName;
 
     public static void init(Context mContext) {
-        TelephonyManager tm = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        dId = tm.getDeviceId();
         dType = Build.MODEL;
         dVersion = Build.VERSION.SDK_INT + "_" + Build.VERSION.RELEASE;
         PackageInfo pi = null;

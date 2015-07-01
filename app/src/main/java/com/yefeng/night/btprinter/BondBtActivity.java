@@ -11,9 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.yefeng.night.btprinter.base.BaseActivity;
-import com.yefeng.night.btprinter.bt.BtMsgEvent;
-import com.yefeng.night.btprinter.bt.BtMsgType;
+import com.yefeng.night.btprinter.bt.BluetoothActivity;
 import com.yefeng.night.btprinter.bt.BtUtil;
 import com.yefeng.night.btprinter.print.PrintQueue;
 import com.yefeng.night.btprinter.print.PrintUtil;
@@ -33,7 +31,7 @@ import java.util.Set;
  * github:yefengfreedom
  */
 @EActivity(R.layout.activity_bond_bt)
-public class BondBtActivity extends BaseActivity {
+public class BondBtActivity extends BluetoothActivity {
 
     @ViewById
     ImageView imgBondIcon;
@@ -207,39 +205,41 @@ public class BondBtActivity extends BaseActivity {
         this.finish();
     }
 
-    public void onEventMainThread(BtMsgEvent event) {
-        if (event == null || event.type != BtMsgType.BLUETOOTH_STATUS_CHANGE) {
-            return;
-        }
-        Intent intent = event.intent;
-        if (intent == null) {
-            return;
-        }
-        String action = intent.getAction();
-        if (TextUtils.isEmpty(action)) {
-            return;
-        }
-        if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-            txtBondTitle.setText("正在搜索蓝牙设备…");
-            txtBondSummary.setText("");
-        } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-            txtBondTitle.setText("搜索完成");
-            txtBondSummary.setText("点击重新搜索");
-        } else if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
-            init();
-        } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-            if (null != deviceAdapter && device != null) {
-                deviceAdapter.addDevices(device);
-            }
-        } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
-            init();
-            if (PrintUtil.isBondPrinter(getApplicationContext(), bluetoothAdapter)) {
-                goPrinterSetting();
-            }
-        } else if ("android.bluetooth.device.action.PAIRING_REQUEST".equals(action)) {
-            showToast("正在绑定打印机");
+    @Override
+    public void btStartDiscovery(Intent intent) {
+        txtBondTitle.setText("正在搜索蓝牙设备…");
+        txtBondSummary.setText("");
+    }
+
+    @Override
+    public void btFinishDiscovery(Intent intent) {
+        txtBondTitle.setText("搜索完成");
+        txtBondSummary.setText("点击重新搜索");
+    }
+
+    @Override
+    public void btStatusChanged(Intent intent) {
+        init();
+    }
+
+    @Override
+    public void btFoundDevice(Intent intent) {
+        BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+        if (null != deviceAdapter && device != null) {
+            deviceAdapter.addDevices(device);
         }
     }
 
+    @Override
+    public void btBondStatusChange(Intent intent) {
+        init();
+        if (PrintUtil.isBondPrinter(getApplicationContext(), bluetoothAdapter)) {
+            goPrinterSetting();
+        }
+    }
+
+    @Override
+    public void btPairingRequest(Intent intent) {
+        showToast("正在绑定打印机");
+    }
 }

@@ -21,7 +21,7 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by yefeng on 5/28/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * This class does all the work for setting up and managing Bluetooth
  * connections with other devices. It has a thread that listens for incoming
  * connections, a thread for connecting with a device, and a thread for
@@ -469,13 +469,15 @@ public class BtService {
         public void run() {
             Log.i(TAG, "BEGIN mConnectedThread");
             byte[] buffer = new byte[1024];
-            int len;
+            int bytes;
 
             // Keep listening to the InputStream while connected
             while (true) {
                 try {
                     // Read from the InputStream
-                    len = mmInStream.read(buffer);
+                    bytes = mmInStream.read(buffer);
+                    // send data
+                    EventBus.getDefault().post(new BtMsgReadEvent(bytes, buffer));
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
