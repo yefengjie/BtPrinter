@@ -26,21 +26,6 @@
         <activity android:name=".BondBtActivity_"/>
 
         <service android:name=".BtService"/>
-
-        <!--<receiver android:name=".bt.PrinterBluetoothReceiver">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.bluetooth.adapter.action.STATE_CHANGED"/>-->
-        <!--<action android:name="android.bluetooth.adapter.action.SCAN_MODE_CHANGED"/>-->
-        <!--<action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED"/>-->
-        <!--<action android:name="android.bluetooth.device.action.ACL_CONNECTED"/>-->
-        <!--<action android:name="android.bluetooth.device.action.PAIRING_REQUEST"/>-->
-        <!--<action android:name="android.bluetooth.device.action.UUID"/>-->
-        <!--<action android:name="android.bluetooth.device.action.ACL_DISCONNECTED"/>-->
-        <!--<action android:name="android.bluetooth.adapter.action.DISCOVERY_STARTED"/>-->
-        <!--<action android:name="android.bluetooth.adapter.action.DISCOVERY_FINISHED"/>-->
-        <!--<action android:name="android.bluetooth.device.action.FOUND"/>-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
     </application>
 
 </manifest>
