@@ -23,6 +23,19 @@ public class SharedPreferenceUtil {
         apply(editor);
     }
 
+    /**
+     * use new api to reduce file operate
+     *
+     * @param editor editor
+     */
+    public static void apply(SharedPreferences.Editor editor) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+            editor.apply();
+        } else {
+            editor.commit();
+        }
+    }
+
     public static String getString(Context mContext, String key, String defaultValue) {
         if (null == mContext || TextUtils.isEmpty(key)) {
             return defaultValue;
@@ -95,14 +108,6 @@ public class SharedPreferenceUtil {
         apply(editor);
     }
 
-    public static float getFloat(Context mContext, String key, float defaultValue) {
-        if (null == mContext || TextUtils.isEmpty(key)) {
-            return defaultValue;
-        }
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getFloat(key, defaultValue);
-    }
-
 //    public static void putStringSet(Context mContext, String key, Set<String> value) {
 //        if (null == mContext || TextUtils.isEmpty(key)) {
 //            return;
@@ -121,16 +126,11 @@ public class SharedPreferenceUtil {
 //        return sharedPreferences.getStringSet(key, defaultValue);
 //    }
 
-    /**
-     * use new api to reduce file operate
-     *
-     * @param editor editor
-     */
-    public static void apply(SharedPreferences.Editor editor) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-            editor.apply();
-        } else {
-            editor.commit();
+    public static float getFloat(Context mContext, String key, float defaultValue) {
+        if (null == mContext || TextUtils.isEmpty(key)) {
+            return defaultValue;
         }
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getFloat(key, defaultValue);
     }
 }

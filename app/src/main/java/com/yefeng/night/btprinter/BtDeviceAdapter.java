@@ -43,29 +43,6 @@ public class BtDeviceAdapter extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
-    public void setConnectedDeviceAddress(String macAddress) {
-        this.mConnectedDeviceAddress = macAddress;
-    }
-
-    public void addDevices(ArrayList<BluetoothDevice> mDevices) {
-        if (null == mDevices) {
-            return;
-        }
-        for (BluetoothDevice bluetoothDevice : mDevices) {
-            addDevices(bluetoothDevice);
-        }
-    }
-
-    public void addDevices(BluetoothDevice mDevice) {
-        if (null == mDevice) {
-            return;
-        }
-        if (!this.mDevices.contains(mDevice)) {
-            this.mDevices.add(mDevice);
-            this.notifyDataSetChanged();
-        }
-    }
-
     @Override
     public void notifyDataSetChanged() {
         if (null != this.mDevices) {
@@ -100,6 +77,29 @@ public class BtDeviceAdapter extends BaseAdapter {
         unBondDevices.clear();
         unBondDevices = null;
         return mDevices;
+    }
+
+    public void setConnectedDeviceAddress(String macAddress) {
+        this.mConnectedDeviceAddress = macAddress;
+    }
+
+    public void addDevices(ArrayList<BluetoothDevice> mDevices) {
+        if (null == mDevices) {
+            return;
+        }
+        for (BluetoothDevice bluetoothDevice : mDevices) {
+            addDevices(bluetoothDevice);
+        }
+    }
+
+    public void addDevices(BluetoothDevice mDevice) {
+        if (null == mDevice) {
+            return;
+        }
+        if (!this.mDevices.contains(mDevice)) {
+            this.mDevices.add(mDevice);
+            this.notifyDataSetChanged();
+        }
     }
 
     @Override

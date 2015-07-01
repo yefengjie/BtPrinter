@@ -34,6 +34,7 @@ import java.util.Set;
 @EActivity(R.layout.activity_bond_bt)
 public class BondBtActivity extends BluetoothActivity {
 
+    private static final int OPEN_BLUETOOTH_REQUEST = 100;
     @ViewById
     ImageView imgBondIcon;
     @ViewById
@@ -44,8 +45,6 @@ public class BondBtActivity extends BluetoothActivity {
     LinearLayout llBondSearch;
     @ViewById
     ListView listBondDevice;
-
-    private static final int OPEN_BLUETOOTH_REQUEST = 100;
     private BtDeviceAdapter deviceAdapter;
     private BluetoothAdapter bluetoothAdapter;
 
@@ -63,42 +62,6 @@ public class BondBtActivity extends BluetoothActivity {
         super.onStart();
         init();
         searchDeviceOrOpenBluetooth();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        BtUtil.cancelDiscovery(bluetoothAdapter);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_OK) {
-            init();
-        } else if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_CANCELED) {
-            showToast("您已拒绝使用蓝牙");
-            finish();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        deviceAdapter = null;
-        bluetoothAdapter = null;
-    }
-
-    /**
-     * search device, if bluetooth is closed, open it
-     */
-    private void searchDeviceOrOpenBluetooth() {
-        if (!BtUtil.isOpen(bluetoothAdapter)) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, OPEN_BLUETOOTH_REQUEST);
-        } else {
-            BtUtil.searchDevices(bluetoothAdapter);
-        }
     }
 
     private void init() {
@@ -131,6 +94,18 @@ public class BondBtActivity extends BluetoothActivity {
         }
     }
 
+    /**
+     * search device, if bluetooth is closed, open it
+     */
+    private void searchDeviceOrOpenBluetooth() {
+        if (!BtUtil.isOpen(bluetoothAdapter)) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, OPEN_BLUETOOTH_REQUEST);
+        } else {
+            BtUtil.searchDevices(bluetoothAdapter);
+        }
+    }
+
     private String getPrinterName() {
         String dName = PrintUtil.getDefaultBluetoothDeviceName(this);
         if (TextUtils.isEmpty(dName)) {
@@ -139,11 +114,28 @@ public class BondBtActivity extends BluetoothActivity {
         return dName;
     }
 
-    private String getPrinterName(String dName) {
-        if (TextUtils.isEmpty(dName)) {
-            dName = "未知设备";
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BtUtil.cancelDiscovery(bluetoothAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_OK) {
+            init();
+        } else if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_CANCELED) {
+            showToast("您已拒绝使用蓝牙");
+            finish();
         }
-        return dName;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        deviceAdapter = null;
+        bluetoothAdapter = null;
     }
 
     @Click(R.id.ll_bond_search)
@@ -198,6 +190,13 @@ public class BondBtActivity extends BluetoothActivity {
                 })
                 .create()
                 .show();
+    }
+
+    private String getPrinterName(String dName) {
+        if (TextUtils.isEmpty(dName)) {
+            dName = "未知设备";
+        }
+        return dName;
     }
 
     /**

@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/default_ui_margin_large"
-                android:src="@drawable/ic_bluetooth_off" />
+                android:src="@drawable/ic_bluetooth_off"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,12 +38,12 @@
                     android:layout_marginBottom="@dimen/default_ui_margin_small"
                     android:text="打印机未连接"
                     android:textSize="@dimen/text_size_medium"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/txt_printer_setting_summary"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -54,7 +54,7 @@
             android:layout_marginLeft="@dimen/default_ui_margin"
             android:layout_marginRight="@dimen/default_ui_margin"
             android:layout_marginTop="48dp"
-            android:text="打印测试" />
+            android:text="打印测试"/>
 
     </LinearLayout>
 </ScrollView>

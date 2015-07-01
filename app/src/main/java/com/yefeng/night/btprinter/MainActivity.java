@@ -25,6 +25,7 @@ import org.androidannotations.annotations.ViewById;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends BluetoothActivity {
 
+    private static final int OPEN_BLUETOOTH_REQUEST = 100;
     @ViewById(R.id.img_printer_setting_icon)
     ImageView imgPrinter;
     @ViewById(R.id.txt_printer_setting_title)
@@ -35,11 +36,7 @@ public class MainActivity extends BluetoothActivity {
     LinearLayout llPrinterChangeDevice;
     @ViewById(R.id.btn_printer_setting_test)
     Button btnTest;
-
     private boolean mBtEnable = true;
-
-    private static final int OPEN_BLUETOOTH_REQUEST = 100;
-
     /**
      * bluetooth adapter
      */
@@ -49,17 +46,6 @@ public class MainActivity extends BluetoothActivity {
     protected void onStart() {
         super.onStart();
         init();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_OK) {
-            init();
-        } else if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_CANCELED) {
-            showToast("您已拒绝使用蓝牙");
-            finish();
-        }
     }
 
     void init() {
@@ -91,6 +77,17 @@ public class MainActivity extends BluetoothActivity {
         txtPrinterTitle.setText("已绑定蓝牙：" + name);
         txtPrinterSummary.setText(address);
         imgPrinter.setImageResource(R.drawable.ic_bluetooth_device_connected);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_OK) {
+            init();
+        } else if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_CANCELED) {
+            showToast("您已拒绝使用蓝牙");
+            finish();
+        }
     }
 
     @Override

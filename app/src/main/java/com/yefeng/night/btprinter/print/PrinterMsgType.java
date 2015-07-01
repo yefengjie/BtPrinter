@@ -3,7 +3,7 @@ package com.yefeng.night.btprinter.print;
 /**
  * Created by yefeng on 6/1/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * printer eventbus message type
  */
 public class PrinterMsgType {

@@ -3,7 +3,7 @@ package com.yefeng.night.btprinter.print;
 /**
  * Created by yefeng on 6/2/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * printer command
  */
 public class GPrinterCommand {

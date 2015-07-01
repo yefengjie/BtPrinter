@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * Created by yefeng on 6/2/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * printer util
  */
 public class PrintUtil {
@@ -32,22 +32,12 @@ public class PrintUtil {
         AppInfo.btAddress = value;
     }
 
-    public static String getDefaultBluethoothDeviceAddress(Context mContext) {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(DEFAULT_BLUETOOTH_DEVICE_ADDRESS, "");
-    }
-
     public static void setDefaultBluetoothDeviceName(Context mContext, String value) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(DEFAULT_BLUETOOTH_DEVICE_NAME, value);
         editor.apply();
         AppInfo.btName = value;
-    }
-
-    public static String getDefaultBluetoothDeviceName(Context mContext) {
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(DEFAULT_BLUETOOTH_DEVICE_NAME, "");
     }
 
     public static boolean isBondPrinter(Context mContext, BluetoothAdapter bluetoothAdapter) {
@@ -71,13 +61,20 @@ public class PrintUtil {
 
     }
 
+    public static String getDefaultBluethoothDeviceAddress(Context mContext) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(DEFAULT_BLUETOOTH_DEVICE_ADDRESS, "");
+    }
+
     public static boolean isBondPrinterIgnoreBluetooth(Context mContext) {
         String defaultBluetoothDeviceAddress = getDefaultBluethoothDeviceAddress(mContext);
-        if (TextUtils.isEmpty(defaultBluetoothDeviceAddress)
-                || TextUtils.isEmpty(getDefaultBluetoothDeviceName(mContext))) {
-            return false;
-        }
-        return true;
+        return !(TextUtils.isEmpty(defaultBluetoothDeviceAddress)
+                || TextUtils.isEmpty(getDefaultBluetoothDeviceName(mContext)));
+    }
+
+    public static String getDefaultBluetoothDeviceName(Context mContext) {
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(DEFAULT_BLUETOOTH_DEVICE_NAME, "");
     }
 
     /**

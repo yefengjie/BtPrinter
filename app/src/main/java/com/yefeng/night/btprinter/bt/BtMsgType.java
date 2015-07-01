@@ -3,7 +3,7 @@ package com.yefeng.night.btprinter.bt;
 /**
  * Created by yefeng on 6/1/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * blue tooth receiver message type
  */
 public class BtMsgType {

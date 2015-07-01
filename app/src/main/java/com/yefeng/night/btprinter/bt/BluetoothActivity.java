@@ -16,6 +16,35 @@ import com.yefeng.night.btprinter.base.BaseActivity;
 public class BluetoothActivity extends BaseActivity implements BtInterface {
 
 
+    /**
+     * blue tooth broadcast receiver
+     */
+    protected BroadcastReceiver mBtReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (null == intent) {
+                return;
+            }
+            String action = intent.getAction();
+            if (TextUtils.isEmpty(action)) {
+                return;
+            }
+            if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
+                btStartDiscovery(intent);
+            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
+                btFinishDiscovery(intent);
+            } else if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
+                btStatusChanged(intent);
+            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                btFoundDevice(intent);
+            } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
+                btBondStatusChange(intent);
+            } else if ("android.bluetooth.device.action.PAIRING_REQUEST".equals(action)) {
+                btPairingRequest(intent);
+            }
+        }
+    };
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -57,33 +86,4 @@ public class BluetoothActivity extends BaseActivity implements BtInterface {
     public void btPairingRequest(Intent intent) {
 
     }
-
-    /**
-     * blue tooth broadcast receiver
-     */
-    protected BroadcastReceiver mBtReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (null == intent) {
-                return;
-            }
-            String action = intent.getAction();
-            if (TextUtils.isEmpty(action)) {
-                return;
-            }
-            if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-                btStartDiscovery(intent);
-            } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
-                btFinishDiscovery(intent);
-            } else if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
-                btStatusChanged(intent);
-            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                btFoundDevice(intent);
-            } else if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
-                btBondStatusChange(intent);
-            } else if ("android.bluetooth.device.action.PAIRING_REQUEST".equals(action)) {
-                btPairingRequest(intent);
-            }
-        }
-    };
 }

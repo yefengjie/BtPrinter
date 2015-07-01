@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/ll_bond_search"
@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/default_ui_margin_large"
-            android:src="@drawable/ic_bluetooth_off" />
+            android:src="@drawable/ic_bluetooth_off"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,13 +35,13 @@
                 android:layout_marginBottom="@dimen/default_ui_margin_small"
                 android:text="未连接蓝牙打印机"
                 android:textSize="@dimen/text_size_medium"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/txt_bond_summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="系统蓝牙已关闭,点击开启" />
+                android:text="系统蓝牙已关闭,点击开启"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -49,5 +49,5 @@
         android:id="@+id/list_bond_device"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:footerDividersEnabled="true" />
+        android:footerDividersEnabled="true"/>
 </LinearLayout>
