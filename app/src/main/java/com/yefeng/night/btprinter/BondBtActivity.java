@@ -1,5 +1,6 @@
 package com.yefeng.night.btprinter;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -73,8 +74,11 @@ public class BondBtActivity extends BluetoothActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == OPEN_BLUETOOTH_REQUEST) {
+        if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_OK) {
             init();
+        } else if (requestCode == OPEN_BLUETOOTH_REQUEST && resultCode == Activity.RESULT_CANCELED) {
+            showToast("您已拒绝使用蓝牙");
+            finish();
         }
     }
 
