@@ -89,6 +89,11 @@ public class MainActivity extends BluetoothActivity {
         startService(intent);
     }
 
+    @Click(R.id.btn_printer_setting_test_draw_picture)
+    void printDrawPicture() {
+        startActivity(new Intent(getApplicationContext(), PaintActivity_.class));
+    }
+
     /**
      * handle printer message
      *

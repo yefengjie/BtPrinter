@@ -47,6 +47,8 @@ public class BtService extends IntentService {
         } else if (intent.getAction().equals(PrintUtil.ACTION_PRINT_TICKET)) {
         } else if (intent.getAction().equals(PrintUtil.ACTION_PRINT_BITMAP)) {
             printBitmapTest();
+        } else if (intent.getAction().equals(PrintUtil.ACTION_PRINT_PAINTING)) {
+            printPainting();
         }
     }
 
@@ -83,10 +85,18 @@ public class BtService extends IntentService {
         }
         Bitmap bitmap = BitmapFactory.decodeStream(bis);
         PrintPic printPic = PrintPic.getInstance();
-        printPic.initCanvas(800);
-        printPic.initPaint();
-        printPic.drawImage(0, 0, bitmap);
+        printPic.init(bitmap);
         byte[] bytes = printPic.printDraw();
+        ArrayList<byte[]> printBytes = new ArrayList<byte[]>();
+        printBytes.add(GPrinterCommand.reset);
+        printBytes.add(GPrinterCommand.print);
+        printBytes.add(bytes);
+        printBytes.add(GPrinterCommand.print);
+        PrintQueue.getQueue(getApplicationContext()).add(bytes);
+    }
+
+    private void printPainting() {
+        byte[] bytes = PrintPic.getInstance().printDraw();
         ArrayList<byte[]> printBytes = new ArrayList<byte[]>();
         printBytes.add(GPrinterCommand.reset);
         printBytes.add(GPrinterCommand.print);

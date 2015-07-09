@@ -28,6 +28,7 @@ public class PrintUtil {
     public static final String ACTION_PRINT = "action_print";
     public static final String ACTION_PRINT_TICKET = "action_print_ticket";
     public static final String ACTION_PRINT_BITMAP = "action_print_bitmap";
+    public static final String ACTION_PRINT_PAINTING = "action_print_painting";
 
     public static final String PRINT_EXTRA = "print_extra";
 

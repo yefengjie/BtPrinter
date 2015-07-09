@@ -25,6 +25,8 @@
 
         <activity android:name=".BondBtActivity_"/>
 
+        <activity android:name=".PaintActivity_"/>
+
         <service android:name=".BtService"/>
     </application>
 
