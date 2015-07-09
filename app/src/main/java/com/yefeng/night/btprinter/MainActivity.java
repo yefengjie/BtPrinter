@@ -74,9 +74,18 @@ public class MainActivity extends BluetoothActivity {
     }
 
     @Click(R.id.btn_printer_setting_test)
-    void testPrinter() {
+    void printTest() {
+        showToast("打印测试...");
         Intent intent = new Intent(getApplicationContext(), BtService.class);
         intent.setAction(PrintUtil.ACTION_PRINT_TEST);
+        startService(intent);
+    }
+
+    @Click(R.id.btn_printer_setting_test_bitmap)
+    void printBitmap() {
+        showToast("打印图片中...");
+        Intent intent = new Intent(getApplicationContext(), BtService.class);
+        intent.setAction(PrintUtil.ACTION_PRINT_BITMAP);
         startService(intent);
     }
 

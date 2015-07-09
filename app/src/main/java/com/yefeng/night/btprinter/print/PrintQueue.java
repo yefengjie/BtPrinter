@@ -70,6 +70,22 @@ public class PrintQueue {
     }
 
     /**
+     * add print bytes to queue. and call print
+     *
+     * @param bytesList bytesList
+     */
+    public synchronized void add(ArrayList<byte[]> bytesList) {
+        if (null == mQueue) {
+            mQueue = new ArrayList<byte[]>();
+        }
+        if (null != bytesList) {
+            mQueue.addAll(bytesList);
+        }
+        print();
+    }
+
+
+    /**
      * print queue
      */
     public synchronized void print() {
@@ -98,21 +114,6 @@ public class PrintQueue {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * add print bytes to queue. and call print
-     *
-     * @param bytesList bytesList
-     */
-    public synchronized void add(ArrayList<byte[]> bytesList) {
-        if (null == mQueue) {
-            mQueue = new ArrayList<byte[]>();
-        }
-        if (null != bytesList) {
-            mQueue.addAll(bytesList);
-        }
-        print();
     }
 
     /**

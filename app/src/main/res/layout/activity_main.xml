@@ -56,5 +56,14 @@
             android:layout_marginTop="48dp"
             android:text="打印测试"/>
 
+        <Button
+            android:id="@+id/btn_printer_setting_test_bitmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_ui_margin"
+            android:layout_marginRight="@dimen/default_ui_margin"
+            android:layout_marginTop="@dimen/default_ui_margin"
+            android:text="打印图片测试"/>
+
     </LinearLayout>
 </ScrollView>
