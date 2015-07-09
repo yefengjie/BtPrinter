@@ -33,6 +33,9 @@ public class ImageUtils {
         } catch (Exception e) {
             e.printStackTrace();
             return bitmap;
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            return bitmap;
         }
         return bitmap;
     }

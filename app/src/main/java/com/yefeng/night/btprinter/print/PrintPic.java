@@ -41,7 +41,7 @@ public class PrintPic {
     public void initCanvas(int w) {
         int h = 10 * w;
 
-        this.bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_4444);
+        this.bm = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565);
         this.canvas = new Canvas(this.bm);
 
         this.canvas.drawColor(-1);
