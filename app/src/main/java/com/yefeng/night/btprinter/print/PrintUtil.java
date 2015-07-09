@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * Created by yefeng on 6/2/15.
  * github:yefengfreedom
- * <p/>
+ * <p>
  * printer util
  */
 public class PrintUtil {
@@ -23,6 +23,13 @@ public class PrintUtil {
     private static final String FILENAME = "bt";
     private static final String DEFAULT_BLUETOOTH_DEVICE_ADDRESS = "default_bluetooth_device_address";
     private static final String DEFAULT_BLUETOOTH_DEVICE_NAME = "default_bluetooth_device_name";
+
+    public static final String ACTION_PRINT_TEST = "action_print_test";
+    public static final String ACTION_PRINT = "action_print";
+    public static final String ACTION_PRINT_TICKET = "action_print_ticket";
+    public static final String ACTION_PRINT_BITMAP = "action_print_bitmap";
+
+    public static final String PRINT_EXTRA = "print_extra";
 
     public static void setDefaultBluetoothDeviceAddress(Context mContext, String value) {
         SharedPreferences sharedPreferences = mContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
