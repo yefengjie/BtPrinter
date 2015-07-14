@@ -29,7 +29,9 @@ public class PrintPic {
     }
 
     public void init(Bitmap bitmap) {
-        initCanvas(800);
+        if (null != bitmap) {
+            initCanvas(bitmap.getWidth());
+        }
         if (null == paint) {
             initPaint();
         }

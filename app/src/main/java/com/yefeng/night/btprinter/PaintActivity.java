@@ -45,7 +45,7 @@ public class PaintActivity extends BaseActivity {
             return;
         }
         Log.e("PaintActivity", "before bitmap :" + bitmap.getWidth() + "--" + bitmap.getHeight());
-        bitmap = ImageUtils.zoomBitmapByWidth(bitmap, 400);
+        bitmap = ImageUtils.zoomBitmapByWidth(bitmap, 200);
         Log.e("PaintActivity", "zoom bitmap :" + bitmap.getWidth() + "--" + bitmap.getHeight());
         PrintPic.getInstance().init(bitmap);
         showToast("图片打印中...");

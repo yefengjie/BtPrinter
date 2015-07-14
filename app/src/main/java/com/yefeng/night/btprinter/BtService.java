@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.yefeng.night.btprinter.print.GPrinterCommand;
 import com.yefeng.night.btprinter.print.PrintPic;
@@ -91,6 +92,7 @@ public class BtService extends IntentService {
         printBytes.add(GPrinterCommand.reset);
         printBytes.add(GPrinterCommand.print);
         printBytes.add(bytes);
+        Log.e("BtService","image bytes size is :"+bytes.length);
         printBytes.add(GPrinterCommand.print);
         PrintQueue.getQueue(getApplicationContext()).add(bytes);
     }
@@ -101,6 +103,7 @@ public class BtService extends IntentService {
         printBytes.add(GPrinterCommand.reset);
         printBytes.add(GPrinterCommand.print);
         printBytes.add(bytes);
+        Log.e("BtService", "image bytes size is :" + bytes.length);
         printBytes.add(GPrinterCommand.print);
         PrintQueue.getQueue(getApplicationContext()).add(bytes);
     }
