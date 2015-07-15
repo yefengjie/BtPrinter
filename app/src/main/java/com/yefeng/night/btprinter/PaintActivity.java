@@ -19,7 +19,7 @@ import org.androidannotations.annotations.ViewById;
 /**
  * Created by yefeng on 7/9/15.
  * github:yefengfreedom
- * <p>
+ * <p/>
  * 打印机器型号:WP-T630
  */
 @EActivity(R.layout.activity_paint)
@@ -48,6 +48,12 @@ public class PaintActivity extends BaseActivity {
         bitmap = ImageUtils.zoomBitmapByWidth(bitmap, 200);
         Log.e("PaintActivity", "zoom bitmap :" + bitmap.getWidth() + "--" + bitmap.getHeight());
         PrintPic.getInstance().init(bitmap);
+        if (bitmap.isRecycled()) {
+            bitmap = null;
+        } else {
+            bitmap.recycle();
+            bitmap = null;
+        }
         showToast("图片打印中...");
         Intent intent = new Intent(getApplicationContext(), BtService.class);
         intent.setAction(PrintUtil.ACTION_PRINT_PAINTING);

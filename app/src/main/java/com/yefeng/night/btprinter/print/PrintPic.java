@@ -72,6 +72,10 @@ public class PrintPic {
                 this.length = (y + btm.getHeight());
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (null != btm) {
+                btm.recycle();
+            }
         }
     }
 
@@ -168,6 +172,10 @@ public class PrintPic {
                 s++;
                 imgbuf[s] = this.bitbuf[t];
             }
+        }
+        if (null != this.bm) {
+            this.bm.recycle();
+            this.bm = null;
         }
         return imgbuf;
     }

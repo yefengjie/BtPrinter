@@ -87,12 +87,20 @@ public class BtService extends IntentService {
         Bitmap bitmap = BitmapFactory.decodeStream(bis);
         PrintPic printPic = PrintPic.getInstance();
         printPic.init(bitmap);
+        if (null != bitmap) {
+            if (bitmap.isRecycled()) {
+                bitmap = null;
+            } else {
+                bitmap.recycle();
+                bitmap = null;
+            }
+        }
         byte[] bytes = printPic.printDraw();
         ArrayList<byte[]> printBytes = new ArrayList<byte[]>();
         printBytes.add(GPrinterCommand.reset);
         printBytes.add(GPrinterCommand.print);
         printBytes.add(bytes);
-        Log.e("BtService","image bytes size is :"+bytes.length);
+        Log.e("BtService", "image bytes size is :" + bytes.length);
         printBytes.add(GPrinterCommand.print);
         PrintQueue.getQueue(getApplicationContext()).add(bytes);
     }
